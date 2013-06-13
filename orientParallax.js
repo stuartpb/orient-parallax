@@ -1,11 +1,19 @@
-function orientParallax(element,opts){
+function orientParallax(opts){
   opts = opts || {};
   var yFactor = opts.yFactor === undefined ? 50 : opts.yFactor;
   var yOffset = opts.yOffset === undefined ? 50 : opts.yOffset;
   var xFactor = opts.xFactor === undefined ? 50 : opts.xFactor;
   var xOffset = opts.xOffset === undefined ? 50 : opts.xOffset;
+  var selector = opts.selector || '.orient-parallax';
   
   var centerAlpha = null;
+  
+  var sheet = document.head.appendChild(
+    document.createElement("style")).sheet;
+  
+  sheet.insertRule(selector + ' {}',0);
+  
+  var ruleStyle = sheet.cssRules[0].style;
   
   function orientationListener(evt){
     var alpha = evt.alpha;
@@ -21,12 +29,12 @@ function orientParallax(element,opts){
     }
     var beta = evt.beta;
     
-    //Firefox fixes
+    //Firefox has beta and gamma backwards from the spec
     if (/Firefox/.test(navigator.userAgent)) {
       beta = -beta;
     }
     
-    element.style.backgroundPosition =
+    ruleStyle.backgroundPosition =
       ((alphaDelta / 45) * xFactor + xOffset) + '% '
       + ((-1 + (beta / 90)) * yFactor + yOffset) + '%';
   }

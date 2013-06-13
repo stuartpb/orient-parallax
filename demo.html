@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>orient-parallax demo</title>
     <style>
-      html,body {
+      html, body {
         height: 100%;
       }
       body {
@@ -35,7 +35,7 @@
       }
     </style>
   </head>
-  <body>
+  <body class="orient-parallax">
     <img src="shoes/ninja.svg"> 
     <img src="shoes/spring.svg"> 
     <img src="shoes/gargantuan.svg"> 
@@ -44,14 +44,13 @@
     <img src="shoes/squeaky.svg"> 
     <img src="shoes/coconuts.svg"> 
     <img src="shoes/beepboot.svg"> 
-    <div id="bpane">DJ HODOR</div>
+    <div id="bpane" class="orient-parallax">DJ HODOR</div>
     <script src="orientParallax.js"></script>
     <script>
-      orientParallax(document.body);
-      orientParallax(document.getElementById('bpane'));
+      orientParallax();
       
       // y-locked version that's probably closer to what you'll see on iOS:
-      //orientParallax(document.body,{yFactor:0});
+      //orientParallax({yFactor:0});
     </script>
   </body>
 </html>
