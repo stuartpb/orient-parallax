@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>orient-parallax demo</title>
+    <style>
+      html,body {
+        height: 100%;
+      }
+      body {
+        background-image: url('hodjor.jpg');
+        background-size: 150%;
+        color: white;
+        font-size: 0;
+        margin, padding: 0;
+      }
+      #bpane {
+        background-image: url('blurdor.jpg');
+        background-size: 150%;
+        background-attachment:fixed;
+        position: absolute;
+        top: 80%;
+        bottom:0;
+        left:0; right:0;
+        color: white;
+        font-size: 3rem;
+        font-family: sans-serif;
+        text-align: center;
+        margin:0; padding:1rem;
+      }
+      img {
+        display: inline-block;
+        margin: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="shoes/ninja.svg"> 
+    <img src="shoes/spring.svg"> 
+    <img src="shoes/gargantuan.svg"> 
+    <img src="shoes/wetsock.svg"> 
+    <img src="shoes/steamplatform.svg"> 
+    <img src="shoes/squeaky.svg"> 
+    <img src="shoes/coconuts.svg"> 
+    <img src="shoes/beepboot.svg"> 
+    <div id="bpane">DJ HODOR</div>
+    <script src="orientParallax.js"></script>
+    <script>
+      orientParallax(document.body);
+      orientParallax(document.getElementById('bpane'));
+      
+      // y-locked version that's probably closer to what you'll see on iOS:
+      //orientParallax(document.body,{yFactor:0});
+    </script>
+  </body>
+</html>
