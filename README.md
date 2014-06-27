@@ -97,33 +97,37 @@ ability to create blurred elements *at all* is
 deviceorientation support on mobile- see next section), and even then not for
 blurring the content *beneath* an element as a proper implementation might.
 
-## The state of deviceorientation
+**June 2014 update:** The CSS Filter spec was last updated in November 2013,
+and is still only supported in WebKit- and Blink-based browsers.
 
-At time of writing (June 2013),
+## The state of deviceorientation (updated June 2014)
+
+At time of writing,
 [caniuse's page on deviceorientation](http://caniuse.com/deviceorientation)
 only tells half the story.
 
 On iOS Safari, deviceorientation presumably works perfectly. I don't actually
 own an iPhone, so I can't speak to its Safari implementation's efficacy.
 
-On Chrome for Android, it's a jittery mess. Everything twitches all over the
-place, and alpha values are so arbitrary and irregular that they might as well
-not exist at all. There's
-[a bug](https://code.google.com/p/chromium/issues/detail?id=223229) in the
-Chromium bug tracker for this with some degree of an explanation (that I just
-bumped today): here's to hoping it gains some traction.
+On Chrome for Android, it's choppy (although that could just be my phone),
+and it feels like something is wrong with the output values, although I
+haven't debugged them recently. It's still not as bad as
+[it used to be][crbug 223229].
+
+[crbug 223229]: https://code.google.com/p/chromium/issues/detail?id=223229
 
 Firefox for Android has much more accurate orientation support, but the values
 it returns, at least for beta and gamma, seem to be opposite what the spec
 declares they're supposed to be (beta is -90 when the device is right-side-up
 and 90 when it's upside-down). This script currently fixes this with user agent
 sniffing. Bugzilla doesn't seem to have any bugs on this at the moment, and
-the doocumentation only states that
-["this is an experimental technology"](https://developer.mozilla.org/en-US/docs/WebAPI/Detecting_device_orientation)
-and state that
-[Chrome and Firefox are reversed on some axes](https://developer.mozilla.org/en-US/docs/Web/Guide/DOM/Events/Orientation_and_motion_data_explained) -
-ignoring that Chrome is following the directions stated by the W3C spec (albeit
-unreliably). Frankly, I'd file a bug on Bugzilla to this effect, but the one
-reference implementation I can refer to is so shoddy that it just doesn't seem
-right at the moment. We'll see what happens if and when Chrome gets its act
-together.
+the documentation only states that ["this is an experimental technology"][1]
+and that [Chrome and Firefox are reversed on some axes][2] - ignoring that
+Chrome is following the directions stated by the W3C spec (albeit unreliably).
+There's [a bug][bugzilla 878067] for this in Bugzilla, but nobody's pointed out
+that WebKit is following the spec (it just says that it's "reversed from
+Chrome").
+
+[1]: https://developer.mozilla.org/en-US/docs/WebAPI/Detecting_device_orientation
+[2]: https://developer.mozilla.org/en-US/docs/Web/Guide/DOM/Events/Orientation_and_motion_data_explained
+[bugzilla 878067]: https://bugzilla.mozilla.org/show_bug.cgi?id=878067
